@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MovieLikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->
 Route::post('/movies/{movie}/follow', [FollowerController::class, 'follow'])->middleware('auth')->name('users.follow');
 
 Route::post('/movies/{movie}/unfollow', [FollowerController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
+
+Route::post('/movies/{movie}/like', [MovieLikeController::class, 'like'])->middleware('auth')->name('movies.like');
+
+Route::post('/movies/{movie}/unlike', [MovieLikeController::class, 'unlike'])->middleware('auth')->name('movies.unlike');
 
 Route::get('/users/{user}/show', [UserController::class, 'show'])->middleware('auth');
 

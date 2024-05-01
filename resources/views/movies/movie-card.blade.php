@@ -2,22 +2,22 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <div>
-                    <h5>{{ $movie->title }}</h5>
-                    @auth
-                    @if (Auth::user()->follows($movie))
-                    <form method="POST" action="{{ route('users.unfollow',$movie->id) }}">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm"> Unfollow </button>
-                    </form>
-                    @else
-                    <form method="POST" action="{{ route('users.follow',$movie->id) }}">
-                        @csrf
-                        <button type="submit" class="btn btn-primary btn-sm"> Follow </button>
-                    </form>
-                    @endif
-                    @endauth
-                </div>
+                <h5>{{ $movie->title }}</h5>
+            </div>
+            <div>
+                @auth
+                @if (Auth::user()->follows($movie))
+                <form method="POST" action="{{ route('users.unfollow',$movie->id) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm"> Unfollow </button>
+                </form>
+                @else
+                <form method="POST" action="{{ route('users.follow',$movie->id) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary btn-sm"> Follow </button>
+                </form>
+                @endif
+                @endauth
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
                     {{ $movie->date }} </span>
             </div>
         </div>
+        @include('movies.like')
         @include('movies.comments')
     </div>
 </div>

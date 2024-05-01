@@ -24,4 +24,8 @@ class Movie extends Model
     {
         return $this->belongsToMany(User::class, 'follower_movie');
     }
+
+    public function likes(){
+        return $this->belongsToMany(User::class,'movie_like')->withTimestamps();
+    }
 }

@@ -60,6 +60,14 @@ class User extends Authenticatable
         return $this->followings()->where('movie_id', $movie->id)->exists();
     }
 
+    public function likes(){
+        return $this->belongsToMany(Movie::class,'movie_like')->withTimestamps();
+    }
+
+    public function likesMovie(Movie $movie){
+        return $this->likes()->where('movie_id',$movie->id)->exists();
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class)->latest();
